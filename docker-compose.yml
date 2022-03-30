@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  logdb:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: logdb
+      MYSQL_USER: log
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_TCP_PORT: 3306
+    ports:
+      - 3304:3306
+    volumes:
+      - ./logdb/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./logdb/init:/docker-entrypoint-initdb.d
+    container_name: logdb
