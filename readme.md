@@ -73,7 +73,7 @@ Ubuntuの3.8のPythonを利用
 
     参考：https://xminatolog.com/post/2145
 
-    mysql.connectorを使ったサンプル：[Person].py](pytest/Person.py)
+    mysql.connectorを使ったサンプル：[Person.py](pytest/Person.py)
 
 
 ## 3) Pythonからアクセス（SQLAlchemy使用）
