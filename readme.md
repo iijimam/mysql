@@ -213,8 +213,8 @@ Ubuntuの3.8のPythonを利用
     ```
     1から多のインスタンスの追加は以下の感じ
     ```
-    it1=Item(ItemId=1,ItemName="豆腐",Prise=150)
-    it2=Item(ItemId=2,ItemName="卵",Prise=198)
+    it1=Item(ItemId=1,ItemName="豆腐",Price=150)
+    it2=Item(ItemId=2,ItemName="卵",Price=198)
     receipt=Receipt(ShopId="S0001",ShopName="オーケー国分寺店")
     receipt.Items.append(it1)
     receipt.Items.append(it2)
@@ -236,12 +236,12 @@ Ubuntuの3.8のPythonを利用
             print(f"*** 店舗情報 *** {r.ShopId} - {r.ShopName}")
             # ReceiptのItems（多）はリストで取れる
             for i in r.Items:
-                print(f" ** {i.ItemId} - {i.ItemName} - {i.Prise}")
+                print(f" ** {i.ItemId} - {i.ItemName} - {i.Price}")
         ```
 
     - 多側を取得した場合、1側を辿れる
         ```
         result=session.query(Item).filter_by(ItemId=id).first()
-        print(f"** 詳細項目 ** {result.ItemId} - {result.ItemName} - {result.Prise}")
+        print(f"** 詳細項目 ** {result.ItemId} - {result.ItemName} - {result.Price}")
         print(f"** 店舗情報 ** {result.Receipt.ShopName}")
         ```
