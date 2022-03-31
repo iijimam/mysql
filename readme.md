@@ -245,3 +245,24 @@ Ubuntuの3.8のPythonを利用
         print(f"** 詳細項目 ** {result.ItemId} - {result.ItemName} - {result.Price}")
         print(f"** 店舗情報 ** {result.Receipt.ShopName}")
         ```
+
+    - memo
+        IRISの%SQL.Statemenクラスの%ObjectSelectModeプロパティに1をセットしたらRelationShipプロパティのOREFを返すことができるけど、Pythonの%SYS.Python.SQLStatementには、%ObjectSelectModeがないのでできない。残念。
+
+        サーバ側だとこんな感じ。（1側：Okaimono.Receipt、多側：Okaimono.Item）
+        ```
+        USER>set stmt=##class(%SQL.Statement).%New()
+ 
+        USER>set stmt.%ObjectSelectMode=1
+        
+        USER>set st=stmt.%Prepare("SELECT Name, Price, Receipt FROM Okaimono.Item")
+        
+        USER>set rset=stmt.%Execute()
+        
+        USER>write rset.%Next()
+        1
+        USER>write rset.Receipt  //この結果がIDではなくてOREF返る
+        11@Okaimono.Receipt
+        USER>write rset.Receipt.StoreName  //多側から1側取得できる
+        イオン
+        ```
